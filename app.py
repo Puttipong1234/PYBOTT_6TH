@@ -231,7 +231,7 @@ def handler_Follow(event):
                             action=MessageAction(label="เริ่มบันทึกอาการป่วย",text="เริ่มบันทึกอาการป่วย"))
     
     qbtn2 = QuickReplyButton(image_url="https://www.krungsri.com/bank/getmedia/1f37428a-a9e9-4860-9efd-90aeb886d3d5/krungsri-coronavirus-insurance-detail.jpg.aspx?resizemode=1",
-                            action=MessageAction(label="วันนี้เป็นไงบ้าง",text="วันนี้เป็นไงบ้าง"))
+                            action=MessageAction(label="วันนี้เป็นไงบ้าง",text="ข้อมูลผู้ติดเชื้อวันนี้"))
     
     qrep = QuickReply(items=[qbtn1,qbtn2])
     text_message = TextSendMessage(text="ยินดีต้อนรับเข้าสู่ บันทึกของผู้กักตัว" ,quick_reply=qrep)
