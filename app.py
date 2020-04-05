@@ -6,9 +6,10 @@ from linebot import (
 from linebot.exceptions import (
     InvalidSignatureError
 )
-from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
-)
+from linebot.models import *
+from FlexMessage.QuestionMsg import *
+from FlexMessage.ResultMsg import *
+
 from BasicFunction.COVID_ANALYZER import analyze_covid_from_user
 from firebase import firebase
 from BasicFunction.Firebase_Connect import get , get_daily_tracking , post, post_daily_tracking , update_daily_tracking , update , delete
@@ -93,7 +94,8 @@ def handle_message(event):
             update(uid=UID,new_data=session_data,firebase_app=firebase,database_name=DB_USER_SESSION)
             
             #Reponse กลับไปที่ห้องแชท
-            line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("ท่านมีอาการไข้สูงหรือไม่คะ? กรุณาระบุระดับความรุนแรงของอาการ (พิมพ์เลข 1-5)"))
+            Bubble = Base.get_or_new_from_json_dict(คำถามอาการไข้(),FlexSendMessage)
+            line_bot_api.reply_message(REPLY_TOKEN,messages=Bubble)
             
     
     ### func อื่นๆ
@@ -107,7 +109,10 @@ def handle_message(event):
                 session_data = {"session" : "บันทึกอาการไอ"}
                 update(uid=UID,new_data=session_data,firebase_app=firebase,database_name=DB_USER_SESSION) # update
                 
-                line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("บันทึกอาการไข้เรียบร้อยแล้วคะ มีอาการไอด้วยไหมคะ (พิมพ์เลข 1-5)")) # reponse
+                #Reponse กลับไปที่ห้องแชท
+                Bubble = Base.get_or_new_from_json_dict(คำถามอาการไอ,FlexSendMessage)
+                line_bot_api.reply_message(REPLY_TOKEN,messages=Bubble)
+                
             else :
                 line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("กรุณาระบุเป็นตัวเลขเท่านั้นคะ (พิมพ์เลข 1-5)"))
         
@@ -119,7 +124,9 @@ def handle_message(event):
                 session_data = {"session" : "บันทึกอาการเจ็บคอ"}
                 update(uid=UID,new_data=session_data,firebase_app=firebase,database_name=DB_USER_SESSION) # update
                 
-                line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("บันทึกอาการไอเรียบร้อยแล้วคะ ต่อไปกรุณาระบุอาการเจ็บคอด้วยคะ (พิมพ์เลข 1-5)")) # reponse
+                #Reponse กลับไปที่ห้องแชท
+                Bubble = Base.get_or_new_from_json_dict(คำถามอาการเจ็บคอ,FlexSendMessage)
+                line_bot_api.reply_message(REPLY_TOKEN,Bubble)
             else :
                 line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("กรุณาระบุเป็นตัวเลขเท่านั้นคะ (พิมพ์เลข 1-5)"))
         
@@ -131,7 +138,9 @@ def handle_message(event):
                 session_data = {"session" : "บันทึกอาการน้ำมูกไหล"}
                 update(uid=UID,new_data=session_data,firebase_app=firebase,database_name=DB_USER_SESSION) # update
                 
-                line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("บันทึกอาการเจ็บคอเรียบร้อยแล้วคะ ต่อไปกรุณาระบุอาการน้ำมูกไหลด้วยคะ (พิมพ์เลข 1-5)")) # reponse
+                #Reponse กลับไปที่ห้องแชท
+                Bubble = Base.get_or_new_from_json_dict(คำถามอาการน้ำมูกไหล,FlexSendMessage)
+                line_bot_api.reply_message(REPLY_TOKEN,Bubble)
             else :
                 line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("กรุณาระบุเป็นตัวเลขเท่านั้นคะ (พิมพ์เลข 1-5)"))
 
@@ -143,7 +152,9 @@ def handle_message(event):
                 session_data = {"session" : "บันทึกอาการเหนื่อยหอบ"}
                 update(uid=UID,new_data=session_data,firebase_app=firebase,database_name=DB_USER_SESSION) # update
                 
-                line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("บันทึกอาการอาการน้ำมูกไหลเรียบร้อยแล้วคะ ต่อไปกรุณาระบุอาการเหนื่อยหอบด้วยคะ (พิมพ์เลข 1-5)")) # reponse
+                #Reponse กลับไปที่ห้องแชท
+                Bubble = Base.get_or_new_from_json_dict(คำถามอาการเหนื่อยหอบ,FlexSendMessage)
+                line_bot_api.reply_message(REPLY_TOKEN,Bubble)
             else :
                 line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("กรุณาระบุเป็นตัวเลขเท่านั้นคะ (พิมพ์เลข 1-5)"))
 
@@ -161,7 +172,7 @@ def handle_message(event):
                 
                 post_daily_tracking(uid=UID,data=result,firebase_app=firebase,database_name=DB_COV_TRACKER)
                 
-                line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("บันทึกอาการเหนื่อยหอบเรียบร้อยแล้วคะ ท่านทีอาการอื่นๆเพิ่มเติมอีกไหมคะ บอกน้องหมอได้นะ \n"+ str(result))) # reponse
+                line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("บันทึกอาการเหนื่อยหอบเรียบร้อยแล้วคะ ท่านทีอาการอื่นๆเพิ่มเติมอีกไหมคะ บอกน้องหมอได้นะ \n")) # reponse
             
             else :
                 line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("กรุณาระบุเป็นตัวเลขเท่านั้นคะ (พิมพ์เลข 1-5)"))
@@ -179,8 +190,33 @@ def handle_message(event):
                 
                 post_daily_tracking(uid=UID,data=result,firebase_app=firebase,database_name=DB_COV_TRACKER)
                 
-                line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("บันทึกอาการอื่นๆเรียบร้อยแล้วคะ นี้เป็นผลการตรวจจากการให้ข้อมูลของท่านนะคะ \n"+ str(result))) # reponse
-            
+                raw_Bubble = GenerateResultMsg(Profile_name=DISPLAY_NAME , UserId=UID , Dict_daily_data=result)
+                Bubble = Base.get_or_new_from_json_dict(raw_Bubble,FlexSendMessage)
+                line_bot_api.reply_message(REPLY_TOKEN,Bubble)
+
+
+@handler.add(FollowEvent)
+def handler_Follow(event):
+    UID = event.source.user_id
+    REPLY_TOKEN = event.reply_token
+    line_bot_api.link_rich_menu_to_user(user_id=UID , rich_menu_id="richmenu-58d183f8dde81277a8f1d554c1ebacfb")
+
+    #ส่งรูปภาพ
+    image_message = ImageSendMessage(
+    original_content_url='https://www.krungsri.com/bank/getmedia/1f37428a-a9e9-4860-9efd-90aeb886d3d5/krungsri-coronavirus-insurance-detail.jpg.aspx?resizemode=1',
+    preview_image_url='https://www.krungsri.com/bank/getmedia/1f37428a-a9e9-4860-9efd-90aeb886d3d5/krungsri-coronavirus-insurance-detail.jpg.aspx?resizemode=1'
+)
+    
+    qbtn1 = QuickReplyButton(image_url="https://www.krungsri.com/bank/getmedia/1f37428a-a9e9-4860-9efd-90aeb886d3d5/krungsri-coronavirus-insurance-detail.jpg.aspx?resizemode=1",
+                            action=MessageAction(label="เริ่มบันทึกอาการป่วย",text="เริ่มบันทึกอาการป่วย"))
+    
+    qbtn2 = QuickReplyButton(image_url="https://www.krungsri.com/bank/getmedia/1f37428a-a9e9-4860-9efd-90aeb886d3d5/krungsri-coronavirus-insurance-detail.jpg.aspx?resizemode=1",
+                            action=MessageAction(label="วันนี้เป็นไงบ้าง",text="วันนี้เป็นไงบ้าง"))
+    
+    qrep = QuickReply(items=[qbtn1,qbtn2])
+    text_message = TextSendMessage(text="ยินดีต้อนรับเข้าสู่ บันทึกของผู้กักตัว" ,quick_reply=qrep)
+    
+    line_bot_api.reply_message(REPLY_TOKEN,messages=[image_message,text_message])
 
     
     

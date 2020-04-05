@@ -4,75 +4,75 @@ richdata = {
     "height": 1686
   },
   "selected": True,
-  "name": "แถบช่วยเหลือ",
-  "chatBarText": "แถบช่วยเหลือ",
+  "name": "Rich Menu 1",
+  "chatBarText": "> เมนูหลัก <",
   "areas": [
     {
       "bounds": {
-        "x": 0,
-        "y": 0,
-        "width": 1670,
-        "height": 849
+        "x": 39,
+        "y": 39,
+        "width": 1550,
+        "height": 785
       },
       "action": {
         "type": "message",
-        "text": "4"
+        "text": "เริ่มบันทึกอาการป่วย"
       }
     },
     {
       "bounds": {
-        "x": 9,
-        "y": 855,
-        "width": 821,
-        "height": 812
+        "x": 1638,
+        "y": 39,
+        "width": 804,
+        "height": 785
       },
       "action": {
         "type": "message",
-        "text": "1"
+        "text": "สรุปรายงานอาการของท่าน"
       }
     },
     {
       "bounds": {
-        "x": 849,
-        "y": 855,
-        "width": 802,
-        "height": 802
+        "x": 48,
+        "y": 875,
+        "width": 727,
+        "height": 737
       },
       "action": {
         "type": "message",
-        "text": "2"
+        "text": "ข้อมูลผู้ติดเชื้อวันนี้"
       }
     },
     {
       "bounds": {
-        "x": 1679,
-        "y": 855,
-        "width": 802,
-        "height": 809
+        "x": 814,
+        "y": 866,
+        "width": 765,
+        "height": 775
       },
       "action": {
         "type": "message",
-        "text": "3"
+        "text": "ข้อมูลผู้ติดเชื้อตามพื้นที่"
       }
     },
     {
       "bounds": {
-        "x": 1679,
-        "y": 0,
-        "width": 802,
-        "height": 840
+        "x": 1638,
+        "y": 875,
+        "width": 814,
+        "height": 766
       },
       "action": {
         "type": "message",
-        "text": "เข้าสู่เมนู CSV Search"
+        "text": "สรุปข้อมูลอาการจากผู้ใช้งานทั้งหมด"
       }
     }
   ]
 }
 
 
-from config import Channel_secret #
-channel_access_token = Channel_secret
+from config import Channel_access_token #
+channel_access_token = Channel_access_token
 Image_File_Path = "Material\\richmenu.png"
 import json
 

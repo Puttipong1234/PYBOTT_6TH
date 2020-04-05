@@ -1,4 +1,5 @@
-คำถามอาการไข้ = {
+def คำถามอาการไข้():
+  คำถามอาการไข้ = {
   "type": "flex",
   "altText": "Flex Message",
   "contents": {
@@ -10,7 +11,7 @@
       "contents": [
         {
           "type": "image",
-          "url": "https://firebasestorage.googleapis.com/v0/b/pybott-6th.appspot.com/o/doctor (1).png?alt=media&token=74e146ed-e391-4cc6-95cf-6c58fc1032ca"
+          "url": "https://firebasestorage.googleapis.com/v0/b/pybott-6th.appspot.com/o/doctor%20(1).png?alt=media&token=74e146ed-e391-4cc6-95cf-6c58fc1032ca"
         },
         {
           "type": "text",
@@ -179,6 +180,7 @@
     }
   }
 }
+  return คำถามอาการไข้
 
 
 คำถามอาการไอ = {
@@ -193,7 +195,7 @@
       "contents": [
         {
           "type": "image",
-          "url": "https://firebasestorage.googleapis.com/v0/b/pybott-6th.appspot.com/o/doctor (1).png?alt=media&token=74e146ed-e391-4cc6-95cf-6c58fc1032ca"
+          "url": "https://firebasestorage.googleapis.com/v0/b/pybott-6th.appspot.com/o/doctor%20(1).png?alt=media&token=74e146ed-e391-4cc6-95cf-6c58fc1032ca"
         },
         {
           "type": "text",
@@ -375,7 +377,7 @@
       "contents": [
         {
           "type": "image",
-          "url": "https://firebasestorage.googleapis.com/v0/b/pybott-6th.appspot.com/o/doctor (1).png?alt=media&token=74e146ed-e391-4cc6-95cf-6c58fc1032ca"
+          "url": "https://firebasestorage.googleapis.com/v0/b/pybott-6th.appspot.com/o/doctor%20(1).png?alt=media&token=74e146ed-e391-4cc6-95cf-6c58fc1032ca"
         },
         {
           "type": "text",
@@ -557,7 +559,7 @@
       "contents": [
         {
           "type": "image",
-          "url": "https://firebasestorage.googleapis.com/v0/b/pybott-6th.appspot.com/o/doctor (1).png?alt=media&token=74e146ed-e391-4cc6-95cf-6c58fc1032ca"
+          "url": "https://firebasestorage.googleapis.com/v0/b/pybott-6th.appspot.com/o/doctor%20(1).png?alt=media&token=74e146ed-e391-4cc6-95cf-6c58fc1032ca"
         },
         {
           "type": "text",
@@ -739,7 +741,7 @@
       "contents": [
         {
           "type": "image",
-          "url": "https://firebasestorage.googleapis.com/v0/b/pybott-6th.appspot.com/o/doctor (1).png?alt=media&token=74e146ed-e391-4cc6-95cf-6c58fc1032ca"
+          "url": "https://firebasestorage.googleapis.com/v0/b/pybott-6th.appspot.com/o/doctor%20(1).png?alt=media&token=74e146ed-e391-4cc6-95cf-6c58fc1032ca"
         },
         {
           "type": "text",
