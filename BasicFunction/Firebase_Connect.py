@@ -22,8 +22,8 @@ def post(uid,data,firebase_app,database_name):
 # สร้างข้อมูล User ใหม่ขึ้นมา
 def post_daily_tracking(uid,data,firebase_app,database_name):
     # data[uid] = {"uid":"4","name":"book4","session":"greeting"}
-    date = data["วันที่"] # key
-    res = firebase_app.patch("/"+database_name+"/"+uid+"/"+date,data)
+    today = date.today()
+    res = firebase_app.patch("/"+database_name+"/"+uid+"/"+str(today),data)
     return res
 
 # อัพเดตข้อมูล User

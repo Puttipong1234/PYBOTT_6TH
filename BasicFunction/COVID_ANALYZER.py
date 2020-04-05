@@ -12,19 +12,19 @@ def analyze_covid_from_user(username,dict_report):
     score = 0
 
     if dict_report["มีไข้"]:
-        score += dict_report["มีไข้"]*4
-        
+        score += int(dict_report["มีไข้"])*4
+        # "1"*4 = "1111"
     if dict_report["มีอาการไอ"] == "y":
-        score += dict_report["มีอาการไอ"]*4
+        score += int(dict_report["มีอาการไอ"])*4
         
     if dict_report["น้ำมูกไหล"] == "y":
-        score += dict_report["น้ำมูกไหล"]*4
+        score += int(dict_report["น้ำมูกไหล"])*4
 
     if dict_report["มีอาการเจ็บคอ"] == "y":
-        score += dict_report["มีอาการเจ็บคอ"]*4
+        score += int(dict_report["มีอาการเจ็บคอ"])*4
 
     if dict_report["เหนื่อยหอบ"] == "y":
-        score += dict_report["เหนื่อยหอบ"]*4
+        score += int(dict_report["เหนื่อยหอบ"])*4
     
     dict_report["score"] = score
     dict_report["วันที่"] = str(today)

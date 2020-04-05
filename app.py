@@ -98,8 +98,8 @@ def handle_message(event):
     ### func อื่นๆ
     else:
         if  user_session == "บันทึกอาการไข้": # validate session
-            
-            if MESSAGE_FROM_USER in [1,2,3,4,5]: # validate input
+                # "3" != 3
+            if MESSAGE_FROM_USER in ["1","2","3","4","5"]: # validate input
                 data = MESSAGE_FROM_USER
                 update_daily_tracking(uid=UID,new_data=data,firebase_app=firebase,database_name=DB_COV_TRACKER,fields="มีไข้") # update
                 
@@ -111,7 +111,7 @@ def handle_message(event):
                 line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("กรุณาระบุเป็นตัวเลขเท่านั้นคะ (พิมพ์เลข 1-5)"))
         
         elif  user_session == "บันทึกอาการไอ":
-            if MESSAGE_FROM_USER in [1,2,3,4,5]: # validate input
+            if MESSAGE_FROM_USER in ["1","2","3","4","5"]: # validate input
                 data = MESSAGE_FROM_USER
                 update_daily_tracking(uid=UID,new_data=data,firebase_app=firebase,database_name=DB_COV_TRACKER,fields="มีอาการไอ") # update
                 
@@ -123,7 +123,7 @@ def handle_message(event):
                 line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("กรุณาระบุเป็นตัวเลขเท่านั้นคะ (พิมพ์เลข 1-5)"))
         
         elif  user_session == "บันทึกอาการเจ็บคอ":
-            if MESSAGE_FROM_USER in [1,2,3,4,5]: # validate input
+            if MESSAGE_FROM_USER in ["1","2","3","4","5"]: # validate input
                 data = MESSAGE_FROM_USER
                 update_daily_tracking(uid=UID,new_data=data,firebase_app=firebase,database_name=DB_COV_TRACKER,fields="มีอาการเจ็บคอ") # update
                 
@@ -135,7 +135,7 @@ def handle_message(event):
                 line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("กรุณาระบุเป็นตัวเลขเท่านั้นคะ (พิมพ์เลข 1-5)"))
 
         elif  user_session == "บันทึกอาการน้ำมูกไหล":
-            if MESSAGE_FROM_USER in [1,2,3,4,5]: # validate input
+            if MESSAGE_FROM_USER in ["1","2","3","4","5"]: # validate input
                 data = MESSAGE_FROM_USER
                 update_daily_tracking(uid=UID,new_data=data,firebase_app=firebase,database_name=DB_COV_TRACKER,fields="น้ำมูกไหล") # update
                 
@@ -147,7 +147,7 @@ def handle_message(event):
                 line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("กรุณาระบุเป็นตัวเลขเท่านั้นคะ (พิมพ์เลข 1-5)"))
 
         elif  user_session == "บันทึกอาการเหนื่อยหอบ":
-            if MESSAGE_FROM_USER in [1,2,3,4,5]: # validate input
+            if MESSAGE_FROM_USER in ["1","2","3","4","5"]: # validate input
                 data = MESSAGE_FROM_USER
                 
                 update_daily_tracking(uid=UID,new_data=data,firebase_app=firebase,database_name=DB_COV_TRACKER,fields="เหนื่อยหอบ") # update
