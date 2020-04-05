@@ -383,7 +383,7 @@ def GenerateResultMsg( Profile_name , UserId , Dict_daily_data):
                   "contents": [
                     {
                       "type": "text",
-                      "text": Dict_daily_data["ข้อเสนอแนะ"],
+                      "text":  "อัตราความเสี่ยงของท่านอยู่ที่ : " + Dict_daily_data["score"] +" %  \n\n     👩👩👩 \n\n" + Dict_daily_data["ข้อเสนอแนะ"],
                       "size": "sm",
                       "align": "center",
                       "color": "#505050",

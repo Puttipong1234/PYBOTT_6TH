@@ -172,7 +172,12 @@ def handle_message(event):
                 
                 post_daily_tracking(uid=UID,data=result,firebase_app=firebase,database_name=DB_COV_TRACKER)
                 
-                line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("บันทึกอาการเหนื่อยหอบเรียบร้อยแล้วคะ ท่านทีอาการอื่นๆเพิ่มเติมอีกไหมคะ บอกน้องหมอได้นะ \n")) # reponse
+                qbtn = QuickReplyButton(image_url="https://www.krungsri.com/bank/getmedia/1f37428a-a9e9-4860-9efd-90aeb886d3d5/krungsri-coronavirus-insurance-detail.jpg.aspx?resizemode=1",
+                                        action=MessageAction(label="ไม่มีแล้วจร้า",text="ไม่มีแล้วจร้า"))
+                
+                qrep = QuickReply(items=[qbtn])
+                
+                line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("เรียบร้อยแล้วคะ🧡🧡 \n ท่านมีอาการอื่นๆเพิ่มเติมอีกไหมคะ \n 💪💪 บอกน้องหมอได้นะ",quick_reply=qrep)) # reponse
             
             else :
                 line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("กรุณาระบุเป็นตัวเลขเท่านั้นคะ (พิมพ์เลข 1-5)"))
