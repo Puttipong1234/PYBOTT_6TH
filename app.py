@@ -13,6 +13,7 @@ from FlexMessage.ResultMsg import *
 from BasicFunction.COVID_ANALYZER import analyze_covid_from_user
 from firebase import firebase
 from BasicFunction.Firebase_Connect import get , get_daily_tracking , post, post_daily_tracking , update_daily_tracking , update , delete
+from BasicFunction.DailyApi import get_daily_data
 from config import Firebase_DB_url
 import random
 import time
@@ -97,6 +98,11 @@ def handle_message(event):
             
             #Reponse กลับไปที่ห้องแชท
             Bubble = Base.get_or_new_from_json_dict(คำถามอาการไข้(),FlexSendMessage)
+            line_bot_api.reply_message(REPLY_TOKEN,messages=Bubble)
+        
+        elif MESSAGE_FROM_USER == "ข้อมูลผู้ติดเชื้อวันนี้":
+            #Reponse กลับไปที่ห้องแชท
+            Bubble = Base.get_or_new_from_json_dict(get_daily_data(),FlexSendMessage)
             line_bot_api.reply_message(REPLY_TOKEN,messages=Bubble)
         
         else :
