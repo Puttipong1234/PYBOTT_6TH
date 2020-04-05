@@ -2,7 +2,7 @@ import requests
 
 def get_daily_data():
     res = requests.get(url="https://covid19.th-stat.com/api/open/today")
-    
+    res = res.json()
     
     bubble = {
   "type": "flex",
@@ -16,7 +16,7 @@ def get_daily_data():
       "contents": [
         {
           "type": "image",
-          "url": "https://firebasestorage.googleapis.com/v0/b/pybott-6th.appspot.com/o/doctor (1).png?alt=media&token=74e146ed-e391-4cc6-95cf-6c58fc1032ca"
+          "url": "https://firebasestorage.googleapis.com/v0/b/pybott-6th.appspot.com/o/doctor%20(1).png?alt=media&token=74e146ed-e391-4cc6-95cf-6c58fc1032ca"
         },
         {
           "type": "text",
@@ -173,3 +173,5 @@ def get_daily_data():
 
     return bubble
 
+
+print(get_daily_data())
