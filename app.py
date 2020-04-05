@@ -218,11 +218,6 @@ def handler_Follow(event):
     
     line_bot_api.reply_message(REPLY_TOKEN,messages=[image_message,text_message])
 
-    
-    
-    
-    
-
 
 if __name__ == "__main__":
     app.run(port=80,debug=True)

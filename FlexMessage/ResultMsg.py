@@ -15,7 +15,7 @@ def GenerateResultMsg( Profile_name , UserId , Dict_daily_data):
           "contents": [
             {
               "type": "image",
-              "url": "https://firebasestorage.googleapis.com/v0/b/pybott-6th.appspot.com/o/doctor (1).png?alt=media&token=74e146ed-e391-4cc6-95cf-6c58fc1032ca"
+              "url": "https://firebasestorage.googleapis.com/v0/b/pybott-6th.appspot.com/o/doctor%20(1).png?alt=media&token=74e146ed-e391-4cc6-95cf-6c58fc1032ca"
             },
             {
               "type": "text",
@@ -139,7 +139,7 @@ def GenerateResultMsg( Profile_name , UserId , Dict_daily_data):
           "contents": [
             {
               "type": "image",
-              "url": "https://firebasestorage.googleapis.com/v0/b/pybott-6th.appspot.com/o/doctor (1).png?alt=media&token=74e146ed-e391-4cc6-95cf-6c58fc1032ca"
+              "url": "https://firebasestorage.googleapis.com/v0/b/pybott-6th.appspot.com/o/doctor%20(1).png?alt=media&token=74e146ed-e391-4cc6-95cf-6c58fc1032ca"
             },
             {
               "type": "text",
@@ -340,7 +340,7 @@ def GenerateResultMsg( Profile_name , UserId , Dict_daily_data):
           "contents": [
             {
               "type": "image",
-              "url": "https://firebasestorage.googleapis.com/v0/b/pybott-6th.appspot.com/o/doctor (1).png?alt=media&token=74e146ed-e391-4cc6-95cf-6c58fc1032ca"
+              "url": "https://firebasestorage.googleapis.com/v0/b/pybott-6th.appspot.com/o/doctor%20(1).png?alt=media&token=74e146ed-e391-4cc6-95cf-6c58fc1032ca"
             },
             {
               "type": "text",
