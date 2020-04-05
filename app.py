@@ -100,20 +100,20 @@ def handle_message(event):
         if  user_session == "บันทึกอาการไข้": # validate session
                 # "3" != 3
             if MESSAGE_FROM_USER in ["1","2","3","4","5"]: # validate input
-                data = MESSAGE_FROM_USER
-                update_daily_tracking(uid=UID,new_data=data,firebase_app=firebase,database_name=DB_COV_TRACKER,fields="มีไข้") # update
+                data = {"มีไข้" : MESSAGE_FROM_USER}
+                update_daily_tracking(uid=UID,new_data=data,firebase_app=firebase,database_name=DB_COV_TRACKER) # update
                 
-                session_data = {"session" : "บันทึกอาการไข้"}
+                session_data = {"session" : "บันทึกอาการไอ"}
                 update(uid=UID,new_data=session_data,firebase_app=firebase,database_name=DB_USER_SESSION) # update
                 
-                line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("บันทึกอาการไข้เรียบร้อยแล้วคะ ต่อไปกรุณาระบุอาการไอด้วยคะ (พิมพ์เลข 1-5)")) # reponse
+                line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("บันทึกอาการไข้เรียบร้อยแล้วคะ มีอาการไอด้วยไหมคะ (พิมพ์เลข 1-5)")) # reponse
             else :
                 line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("กรุณาระบุเป็นตัวเลขเท่านั้นคะ (พิมพ์เลข 1-5)"))
         
         elif  user_session == "บันทึกอาการไอ":
             if MESSAGE_FROM_USER in ["1","2","3","4","5"]: # validate input
-                data = MESSAGE_FROM_USER
-                update_daily_tracking(uid=UID,new_data=data,firebase_app=firebase,database_name=DB_COV_TRACKER,fields="มีอาการไอ") # update
+                data = {"มีอาการไอ" : MESSAGE_FROM_USER}
+                update_daily_tracking(uid=UID,new_data=data,firebase_app=firebase,database_name=DB_COV_TRACKER) # update
                 
                 session_data = {"session" : "บันทึกอาการเจ็บคอ"}
                 update(uid=UID,new_data=session_data,firebase_app=firebase,database_name=DB_USER_SESSION) # update
@@ -124,8 +124,8 @@ def handle_message(event):
         
         elif  user_session == "บันทึกอาการเจ็บคอ":
             if MESSAGE_FROM_USER in ["1","2","3","4","5"]: # validate input
-                data = MESSAGE_FROM_USER
-                update_daily_tracking(uid=UID,new_data=data,firebase_app=firebase,database_name=DB_COV_TRACKER,fields="มีอาการเจ็บคอ") # update
+                data = {"มีอาการเจ็บคอ" : MESSAGE_FROM_USER}
+                update_daily_tracking(uid=UID,new_data=data,firebase_app=firebase,database_name=DB_COV_TRACKER) # update
                 
                 session_data = {"session" : "บันทึกอาการน้ำมูกไหล"}
                 update(uid=UID,new_data=session_data,firebase_app=firebase,database_name=DB_USER_SESSION) # update
@@ -136,27 +136,27 @@ def handle_message(event):
 
         elif  user_session == "บันทึกอาการน้ำมูกไหล":
             if MESSAGE_FROM_USER in ["1","2","3","4","5"]: # validate input
-                data = MESSAGE_FROM_USER
-                update_daily_tracking(uid=UID,new_data=data,firebase_app=firebase,database_name=DB_COV_TRACKER,fields="น้ำมูกไหล") # update
+                data = {"น้ำมูกไหล" : MESSAGE_FROM_USER}
+                update_daily_tracking(uid=UID,new_data=data,firebase_app=firebase,database_name=DB_COV_TRACKER) # update
                 
                 session_data = {"session" : "บันทึกอาการเหนื่อยหอบ"}
                 update(uid=UID,new_data=session_data,firebase_app=firebase,database_name=DB_USER_SESSION) # update
                 
-                line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("บันทึกอาการไข้เรียบร้อยแล้วคะ ต่อไปกรุณาระบุอาการไอด้วยคะ (พิมพ์เลข 1-5)")) # reponse
+                line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("บันทึกอาการอาการน้ำมูกไหลเรียบร้อยแล้วคะ ต่อไปกรุณาระบุอาการเหนื่อยหอบด้วยคะ (พิมพ์เลข 1-5)")) # reponse
             else :
                 line_bot_api.reply_message(REPLY_TOKEN,TextSendMessage("กรุณาระบุเป็นตัวเลขเท่านั้นคะ (พิมพ์เลข 1-5)"))
 
         elif  user_session == "บันทึกอาการเหนื่อยหอบ":
             if MESSAGE_FROM_USER in ["1","2","3","4","5"]: # validate input
-                data = MESSAGE_FROM_USER
+                data = {"เหนื่อยหอบ" : MESSAGE_FROM_USER}
                 
-                update_daily_tracking(uid=UID,new_data=data,firebase_app=firebase,database_name=DB_COV_TRACKER,fields="เหนื่อยหอบ") # update
+                update_daily_tracking(uid=UID,new_data=data,firebase_app=firebase,database_name=DB_COV_TRACKER) # update
                 
                 session_data = {"session" : "None"}
                 update(uid=UID,new_data=session_data,firebase_app=firebase,database_name=DB_USER_SESSION) # update
                 
                 user_daily_data = get_daily_tracking(uid=UID,firebase_app=firebase,database_name=DB_COV_TRACKER)
-                result = analyze_covid_from_user(user_daily_data)
+                result = analyze_covid_from_user(UID,user_daily_data)
                 
                 post_daily_tracking(uid=UID,data=result,firebase_app=firebase,database_name=DB_COV_TRACKER)
                 

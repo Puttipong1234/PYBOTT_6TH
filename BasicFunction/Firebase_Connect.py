@@ -32,9 +32,9 @@ def update(uid,new_data,firebase_app,database_name):
     return res
 
 # อัพเดตข้อมูล User
-def update_daily_tracking(uid,new_data,firebase_app,database_name,fields):
+def update_daily_tracking(uid,new_data,firebase_app,database_name):
     today = date.today()
-    res = firebase_app.patch("/"+database_name+"/"+uid+"/"+str(today)+"/"+fields , new_data)
+    res = firebase_app.patch("/"+database_name+"/"+uid+"/"+str(today) , new_data)
     return res
 
 # ลบข้อมูล User
