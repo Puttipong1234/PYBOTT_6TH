@@ -14,6 +14,8 @@ from BasicFunction.COVID_ANALYZER import analyze_covid_from_user
 from firebase import firebase
 from BasicFunction.Firebase_Connect import get , get_daily_tracking , post, post_daily_tracking , update_daily_tracking , update , delete
 from config import Firebase_DB_url
+import random
+import time
 # Firebase_DB_url = "https://pybott-6th.firebaseio.com/" # Your firebase Application
 firebase = firebase.FirebaseApplication(Firebase_DB_url, None)
 DB_COV_TRACKER = "COV_TRACKER"
@@ -96,7 +98,14 @@ def handle_message(event):
             #Reponse กลับไปที่ห้องแชท
             Bubble = Base.get_or_new_from_json_dict(คำถามอาการไข้(),FlexSendMessage)
             line_bot_api.reply_message(REPLY_TOKEN,messages=Bubble)
-            
+        
+        else :
+            num = [1,2,3,4,5]
+            time.sleep(random.choice(num))
+            Fallback_list = ["น้องหมอ ยังไม่มีบริการด้านนี้นะคะ","ขออภัยคะน้องไม่เข้าใจเลยยยจีๆ","ไว้มาถามใหม่ครั้งหน้านะคะ ตอนนี้ยังไม่สะดวกคะ"]
+            Fallback = random.choice(Fallback_list)
+            line_bot_api.reply_message(REPLY_TOKEN,
+                                       TextSendMessage(text=Fallback))
     
     ### func อื่นๆ
     else:
