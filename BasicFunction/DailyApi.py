@@ -74,7 +74,7 @@ def get_daily_data():
                     },
                     {
                       "type": "text",
-                      "text": str(res["NewConfirmed"]),
+                      "text": "( " + str(res["NewConfirmed"]) +" )",
                       "margin": "none",
                       "size": "xs",
                       "align": "center",
@@ -100,7 +100,7 @@ def get_daily_data():
                     },
                     {
                       "type": "text",
-                      "text": str(res["NewDeaths"]),
+                      "text": "( " + str(res["NewDeaths"]) +" )",
                       "margin": "none",
                       "size": "xs",
                       "align": "center",
@@ -132,7 +132,7 @@ def get_daily_data():
                     },
                     {
                       "type": "text",
-                      "text": str(res["NewRecovered"]),
+                      "text":  "( " +str(res["NewRecovered"]) +" )",
                       "margin": "none",
                       "size": "xs",
                       "align": "center",
@@ -158,7 +158,7 @@ def get_daily_data():
                     },
                     {
                       "type": "text",
-                      "text": str(res["NewHospitalized"]),
+                      "text": "( " +str(res["NewHospitalized"]) +" )",
                       "margin": "none",
                       "size": "xs",
                       "align": "center",
