@@ -264,8 +264,8 @@ def handle_message(event):
                 qbtn1 = QuickReplyButton(image_url="https://www.krungsri.com/bank/getmedia/1f37428a-a9e9-4860-9efd-90aeb886d3d5/krungsri-coronavirus-insurance-detail.jpg.aspx?resizemode=1",
                             action=MessageAction(label="ออกจากการค้นหา",text="ออกจากคำสั่ง"))
                 
-                qrep = QuickReply(items=[qbtn1,qbtn2,qbtn3])
-                text_message = TextSendMessage(text="ท่านสามารถค้นหาต่อไปได้ หรือ ออกจากการค้นหาโดยกดปุ่มด้านล่าง" ,quick_reply=qrep)
+                qrep = QuickReply(items=[qbtn1])
+                text_message = TextSendMessage(text="ออกจากการค้นหาโดยกดปุ่มด้านล่าง หรือ ทำการค้นหาต่อไปได้เลยนะคะ" ,quick_reply=qrep)
                 
                 Bubble = Base.get_or_new_from_json_dict(raw_Bubble,FlexSendMessage)
                 line_bot_api.reply_message(REPLY_TOKEN,messages=[Bubble,text_message])
@@ -274,7 +274,7 @@ def handle_message(event):
                 qbtn1 = QuickReplyButton(image_url="https://www.krungsri.com/bank/getmedia/1f37428a-a9e9-4860-9efd-90aeb886d3d5/krungsri-coronavirus-insurance-detail.jpg.aspx?resizemode=1",
                             action=MessageAction(label="ออกจากการค้นหา",text="ออกจากคำสั่ง"))
                 
-                qrep = QuickReply(items=[qbtn1,qbtn2,qbtn3])
+                qrep = QuickReply(items=[qbtn1])
                 text_message = TextSendMessage(text="ไม่พบข้อมูลผู้ติดเชื้อของจังหวัด"+str(MESSAGE_FROM_USER) +"\n กรุณาระบุชื่อจังหวัดใหม่อีกครั้งคะ หรือ กดปุ่มออกจากการค้นหา" ,quick_reply=qrep)
                 
                 line_bot_api.reply_message(REPLY_TOKEN,messages=text_message)
