@@ -15,7 +15,7 @@ def คำถามอาการไข้():
         },
         {
           "type": "text",
-          "text": "Diagonos Question 1",
+          "text": "Diagnos Question 1",
           "margin": "xl",
           "size": "lg",
           "align": "center",
@@ -199,7 +199,7 @@ def คำถามอาการไข้():
         },
         {
           "type": "text",
-          "text": "Diagonos Question 2",
+          "text": "Diagnos Question 2",
           "margin": "xl",
           "size": "lg",
           "align": "center",
@@ -381,7 +381,7 @@ def คำถามอาการไข้():
         },
         {
           "type": "text",
-          "text": "Diagonos Question 3",
+          "text": "Diagnos Question 3",
           "margin": "xl",
           "size": "lg",
           "align": "center",
@@ -563,7 +563,7 @@ def คำถามอาการไข้():
         },
         {
           "type": "text",
-          "text": "Diagonos Question 4",
+          "text": "Diagnos Question 4",
           "margin": "xl",
           "size": "lg",
           "align": "center",
@@ -745,7 +745,7 @@ def คำถามอาการไข้():
         },
         {
           "type": "text",
-          "text": "Diagonos Question 5",
+          "text": "Diagnos Question 5",
           "margin": "xl",
           "size": "lg",
           "align": "center",

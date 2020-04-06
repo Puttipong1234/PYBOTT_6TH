@@ -19,7 +19,7 @@ def GenerateResultMsg( Profile_name , UserId , Dict_daily_data):
             },
             {
               "type": "text",
-              "text": "Diagonos Result",
+              "text": "Diagnos Result",
               "margin": "xl",
               "size": "lg",
               "align": "center",
@@ -143,7 +143,7 @@ def GenerateResultMsg( Profile_name , UserId , Dict_daily_data):
             },
             {
               "type": "text",
-              "text": "Diagonos Result",
+              "text": "Diagnos Result",
               "margin": "xl",
               "size": "lg",
               "align": "center",
@@ -344,7 +344,7 @@ def GenerateResultMsg( Profile_name , UserId , Dict_daily_data):
             },
             {
               "type": "text",
-              "text": "Diagonos Result",
+              "text": "Diagnos Result",
               "margin": "xl",
               "size": "lg",
               "align": "center",
