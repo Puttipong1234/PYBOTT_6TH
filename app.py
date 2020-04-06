@@ -14,6 +14,7 @@ from BasicFunction.COVID_ANALYZER import analyze_covid_from_user
 from firebase import firebase
 from BasicFunction.Firebase_Connect import get , get_daily_tracking , post, post_daily_tracking , update_daily_tracking , update , delete
 from BasicFunction.DailyApi import get_daily_data
+from BasicFunction.CaseLocationApi import get_case_location_data , get_location_reccommend_data
 from config import Firebase_DB_url
 import random
 import time
@@ -75,6 +76,7 @@ def handle_message(event):
     
     user_session = get(uid=UID,firebase_app=firebase , database_name=DB_USER_SESSION)
     user_session = user_session["session"]
+    
     if user_session == "None":
         if MESSAGE_FROM_USER == "เริ่มบันทึกอาการป่วย":
             daily_report = {
@@ -104,6 +106,15 @@ def handle_message(event):
             #Reponse กลับไปที่ห้องแชท
             Bubble = Base.get_or_new_from_json_dict(get_daily_data(),FlexSendMessage)
             line_bot_api.reply_message(REPLY_TOKEN,messages=Bubble)
+            
+        
+        elif MESSAGE_FROM_USER == "ข้อมูลผู้ติดเชื้อตามพื้นที่":
+            
+            session_data = {"session" : "ข้อมูลผู้ติดเชื้อตามพื้นที่"}
+            update(uid=UID,new_data=session_data,firebase_app=firebase,database_name=DB_USER_SESSION)
+            
+            line_bot_api.reply_message(REPLY_TOKEN,
+                                       TextSendMessage(text="กรุณาระบุชื่อจังหวัดที่ท่านต้องการทราบคะ เช่น 'สงขลา'"))
         
         else :
             num = [1,2,3,4,5]
@@ -116,10 +127,35 @@ def handle_message(event):
             qbtn2 = QuickReplyButton(image_url="https://www.krungsri.com/bank/getmedia/1f37428a-a9e9-4860-9efd-90aeb886d3d5/krungsri-coronavirus-insurance-detail.jpg.aspx?resizemode=1",
                                     action=MessageAction(label="วันนี้เป็นไงบ้าง",text="ข้อมูลผู้ติดเชื้อวันนี้"))
             
-            qrep = QuickReply(items=[qbtn1,qbtn2])
+            qbtn3 = QuickReplyButton(image_url="https://www.krungsri.com/bank/getmedia/1f37428a-a9e9-4860-9efd-90aeb886d3d5/krungsri-coronavirus-insurance-detail.jpg.aspx?resizemode=1",
+                            action=MessageAction(label="ข้อมูลผู้ติดเชื้อตามพื้นที่",text="ข้อมูลผู้ติดเชื้อตามพื้นที่"))
+            
+            qrep = QuickReply(items=[qbtn1,qbtn2,qbtn3])
             line_bot_api.reply_message(REPLY_TOKEN,
                                        TextSendMessage(text=Fallback,quick_reply=qrep))
     
+    elif MESSAGE_FROM_USER == "ออกจากคำสั่ง":
+        session_data = {"session" : "None"}
+        update(uid=UID,new_data=session_data,firebase_app=firebase,database_name=DB_USER_SESSION)
+        num = [1,2,3,4,5]
+        time.sleep(random.choice(num))
+        Fallback_list = ["ออกจากคำสั่งเรียบร้อย กรุณาเลือกคำสั่งใหม่นะคะ","ออกจากคำสั่งเรียบร้อย ถามไรต่อดีเอ่ยยยย","ออกจากคำสั่งเรียบร้อย ไว้มาสอบถามใหม่อีกครั้งนะคะ","ออกจากคำสั่งเรียบร้อย ขอบคุณที่แวะมาใช้บริการนะคะ"]
+        Fallback = random.choice(Fallback_list)
+        qbtn1 = QuickReplyButton(image_url="https://www.krungsri.com/bank/getmedia/1f37428a-a9e9-4860-9efd-90aeb886d3d5/krungsri-coronavirus-insurance-detail.jpg.aspx?resizemode=1",
+                        action=MessageAction(label="เริ่มบันทึกอาการป่วย",text="เริ่มบันทึกอาการป่วย"))
+
+        qbtn2 = QuickReplyButton(image_url="https://www.krungsri.com/bank/getmedia/1f37428a-a9e9-4860-9efd-90aeb886d3d5/krungsri-coronavirus-insurance-detail.jpg.aspx?resizemode=1",
+                                action=MessageAction(label="วันนี้เป็นไงบ้าง",text="ข้อมูลผู้ติดเชื้อวันนี้"))
+        
+        qbtn3 = QuickReplyButton(image_url="https://www.krungsri.com/bank/getmedia/1f37428a-a9e9-4860-9efd-90aeb886d3d5/krungsri-coronavirus-insurance-detail.jpg.aspx?resizemode=1",
+                        action=MessageAction(label="ข้อมูลผู้ติดเชื้อตามพื้นที่",text="ข้อมูลผู้ติดเชื้อตามพื้นที่"))
+        
+        qrep = QuickReply(items=[qbtn1,qbtn2,qbtn3])
+        line_bot_api.reply_message(REPLY_TOKEN,
+                                    TextSendMessage(text=Fallback,quick_reply=qrep))
+    
+        
+        
     ### func อื่นๆ
     else:
         if  user_session == "บันทึกอาการไข้": # validate session
@@ -220,6 +256,30 @@ def handle_message(event):
                 raw_Bubble = GenerateResultMsg(Profile_name=DISPLAY_NAME , UserId=UID , Dict_daily_data=result)
                 Bubble = Base.get_or_new_from_json_dict(raw_Bubble,FlexSendMessage)
                 line_bot_api.reply_message(REPLY_TOKEN,Bubble)
+        
+        elif  user_session == "ข้อมูลผู้ติดเชื้อตามพื้นที่":
+            raw_Bubble = get_case_location_data(Province=MESSAGE_FROM_USER)
+            if raw_Bubble:
+                
+                qbtn1 = QuickReplyButton(image_url="https://www.krungsri.com/bank/getmedia/1f37428a-a9e9-4860-9efd-90aeb886d3d5/krungsri-coronavirus-insurance-detail.jpg.aspx?resizemode=1",
+                            action=MessageAction(label="ออกจากการค้นหา",text="ออกจากคำสั่ง"))
+                
+                qrep = QuickReply(items=[qbtn1,qbtn2,qbtn3])
+                text_message = TextSendMessage(text="ท่านสามารถค้นหาต่อไปได้ หรือ ออกจากการค้นหาโดยกดปุ่มด้านล่าง" ,quick_reply=qrep)
+                
+                Bubble = Base.get_or_new_from_json_dict(raw_Bubble,FlexSendMessage)
+                line_bot_api.reply_message(REPLY_TOKEN,messages=[Bubble,text_message])
+            
+            else:
+                qbtn1 = QuickReplyButton(image_url="https://www.krungsri.com/bank/getmedia/1f37428a-a9e9-4860-9efd-90aeb886d3d5/krungsri-coronavirus-insurance-detail.jpg.aspx?resizemode=1",
+                            action=MessageAction(label="ออกจากการค้นหา",text="ออกจากคำสั่ง"))
+                
+                qrep = QuickReply(items=[qbtn1,qbtn2,qbtn3])
+                text_message = TextSendMessage(text="ไม่พบข้อมูลผู้ติดเชื้อของจังหวัด"+str(MESSAGE_FROM_USER) +"\n กรุณาระบุชื่อจังหวัดใหม่อีกครั้งคะ หรือ กดปุ่มออกจากการค้นหา" ,quick_reply=qrep)
+                
+                line_bot_api.reply_message(REPLY_TOKEN,messages=text_message)
+                
+            
 
 
 @handler.add(FollowEvent)
@@ -240,7 +300,10 @@ def handler_Follow(event):
     qbtn2 = QuickReplyButton(image_url="https://www.krungsri.com/bank/getmedia/1f37428a-a9e9-4860-9efd-90aeb886d3d5/krungsri-coronavirus-insurance-detail.jpg.aspx?resizemode=1",
                             action=MessageAction(label="วันนี้เป็นไงบ้าง",text="ข้อมูลผู้ติดเชื้อวันนี้"))
     
-    qrep = QuickReply(items=[qbtn1,qbtn2])
+    qbtn3 = QuickReplyButton(image_url="https://www.krungsri.com/bank/getmedia/1f37428a-a9e9-4860-9efd-90aeb886d3d5/krungsri-coronavirus-insurance-detail.jpg.aspx?resizemode=1",
+                            action=MessageAction(label="ข้อมูลผู้ติดเชื้อตามพื้นที่",text="ข้อมูลผู้ติดเชื้อตามพื้นที่"))
+    
+    qrep = QuickReply(items=[qbtn1,qbtn2,qbtn3])
     text_message = TextSendMessage(text="ยินดีต้อนรับเข้าสู่ บันทึกของผู้กักตัว" ,quick_reply=qrep)
     
     line_bot_api.reply_message(REPLY_TOKEN,messages=[image_message,text_message])
