@@ -110,8 +110,15 @@ def handle_message(event):
             time.sleep(random.choice(num))
             Fallback_list = ["น้องหมอ ยังไม่มีบริการด้านนี้นะคะ","ขออภัยคะน้องไม่เข้าใจเลยยยจีๆ","ไว้มาถามใหม่ครั้งหน้านะคะ ตอนนี้ยังไม่สะดวกคะ"]
             Fallback = random.choice(Fallback_list)
+            qbtn1 = QuickReplyButton(image_url="https://www.krungsri.com/bank/getmedia/1f37428a-a9e9-4860-9efd-90aeb886d3d5/krungsri-coronavirus-insurance-detail.jpg.aspx?resizemode=1",
+                            action=MessageAction(label="เริ่มบันทึกอาการป่วย",text="เริ่มบันทึกอาการป่วย"))
+    
+            qbtn2 = QuickReplyButton(image_url="https://www.krungsri.com/bank/getmedia/1f37428a-a9e9-4860-9efd-90aeb886d3d5/krungsri-coronavirus-insurance-detail.jpg.aspx?resizemode=1",
+                                    action=MessageAction(label="วันนี้เป็นไงบ้าง",text="ข้อมูลผู้ติดเชื้อวันนี้"))
+            
+            qrep = QuickReply(items=[qbtn1,qbtn2])
             line_bot_api.reply_message(REPLY_TOKEN,
-                                       TextSendMessage(text=Fallback))
+                                       TextSendMessage(text=Fallback,quick_reply=qrep))
     
     ### func อื่นๆ
     else:

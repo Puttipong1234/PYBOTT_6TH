@@ -10,6 +10,7 @@ res = get_case_location_data(Province="Bangkok")
 def get_location_reccommend_data(Province):
     res = requests.get(url="https://covid19.th-stat.com/api/open/area")
     res = res.json()
+    print(res["Data"])
     data = []
     for each in res["Data"]:
         if each["Province"] == Province:
@@ -19,5 +20,5 @@ def get_location_reccommend_data(Province):
     
 
 # res = get_case_location_data(Province="Bangkok")
-res = get_location_reccommend_data(Province="กรุงเทพ")
+res = get_location_reccommend_data(Province="สงขลา")
 print(res)
