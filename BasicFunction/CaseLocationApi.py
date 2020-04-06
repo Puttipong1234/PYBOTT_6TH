@@ -98,8 +98,9 @@ def get_case_location_data(Province):
 def get_location_reccommend_data(Province):
     Province = match_province(Province)
     res = requests.get(url="https://covid19.th-stat.com/api/open/area")
-    
+    res = res.json()
     res_cases = requests.get(url="https://covid19.th-stat.com/api/open/cases")
+    res_cases = res_cases.json()
     
     data_by_case = {
         "case_num" : 0,
@@ -125,7 +126,6 @@ def get_location_reccommend_data(Province):
             else :
                 data_by_case["female"] += 1
     
-    res = res.json()
     found = False
     for each in res["Data"]:
         if each["Province"] == Province:
@@ -134,6 +134,7 @@ def get_location_reccommend_data(Province):
                 data_by_case["ProvinceEn"] = each["ProvinceEn"]
                 data_by_case["latest_case"] = each
                 data_by_case["Date"] = each["Date"]
+                found = True
                 continue
             
     if found:
@@ -314,7 +315,7 @@ def get_location_reccommend_data(Province):
                     },
                     {
                     "type": "text",
-                    "text": "ศูนย์ข้อมูล COVID-19 " + str(data_by_case["latest_case"["Date"]]),
+                    "text": "ศูนย์ข้อมูล COVID-19 " + str(data_by_case["latest_case"]["Date"]),
                     "margin": "none",
                     "size": "sm",
                     "align": "center",
@@ -453,7 +454,7 @@ def get_location_reccommend_data(Province):
                     },
                     {
                     "type": "text",
-                    "text": "ศูนย์ข้อมูล COVID-19 "+ str(data_by_case["latest_case"["Date"]]),
+                    "text": "ศูนย์ข้อมูล COVID-19 "+ str(data_by_case["latest_case"]["Date"]),
                     "margin": "none",
                     "size": "sm",
                     "align": "center",
