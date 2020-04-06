@@ -87,11 +87,11 @@ def match_province(text):
     return res[0]
 
 
-def get_case_location_data(Province):
-    res = match_province(Province)
-    res = requests.get(url="https://covid,9.th-stat.com/api/open/cases/sum")
-    res = res.json()
-    return res["Province"][Province]
+# def get_case_location_data(Province):
+#     res = match_province(Province)
+#     res = requests.get(url="https://covid,9.th-stat.com/api/open/cases/sum")
+#     res = res.json()
+#     return res["Province"][Province]
 
 # res = get_case_location_data(Province="Bangkok")
 
@@ -99,6 +99,9 @@ def get_location_reccommend_data(Province):
     Province = match_province(Province)
     res = requests.get(url="https://covid19.th-stat.com/api/open/area")
     res = res.json()
+    
+    
+    
     res_cases = requests.get(url="https://covid19.th-stat.com/api/open/cases")
     res_cases = res_cases.json()
     

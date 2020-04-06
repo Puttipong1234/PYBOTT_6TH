@@ -258,7 +258,7 @@ def handle_message(event):
                 line_bot_api.reply_message(REPLY_TOKEN,Bubble)
         
         elif  user_session == "ข้อมูลผู้ติดเชื้อตามพื้นที่":
-            raw_Bubble = get_case_location_data(Province=MESSAGE_FROM_USER)
+            raw_Bubble = get_location_reccommend_data(Province=MESSAGE_FROM_USER)
             if raw_Bubble:
                 
                 qbtn1 = QuickReplyButton(image_url="https://www.krungsri.com/bank/getmedia/1f37428a-a9e9-4860-9efd-90aeb886d3d5/krungsri-coronavirus-insurance-detail.jpg.aspx?resizemode=1",
