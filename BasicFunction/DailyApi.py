@@ -4,6 +4,7 @@ def get_daily_data():
     res = requests.get(url="https://covid19.th-stat.com/api/open/today")
     res = res.json()
     
+    
     bubble = {
   "type": "flex",
   "altText": "Flex Message",
@@ -73,6 +74,15 @@ def get_daily_data():
                     },
                     {
                       "type": "text",
+                      "text": str(res["NewConfirmed"]),
+                      "margin": "none",
+                      "size": "xs",
+                      "align": "center",
+                      "weight": "regular",
+                      "color": "#009032" if res["NewConfirmed"] >= 0 else "#FF0000"
+                    },
+                    {
+                      "type": "text",
                       "text": "เสียชีวิต",
                       "margin": "xl",
                       "size": "md",
@@ -87,7 +97,16 @@ def get_daily_data():
                       "size": "lg",
                       "align": "center",
                       "weight": "bold"
-                    }
+                    },
+                    {
+                      "type": "text",
+                      "text": str(res["NewDeaths"]),
+                      "margin": "none",
+                      "size": "xs",
+                      "align": "center",
+                      "weight": "regular",
+                      "color": "#009032" if res["NewDeaths"] >= 0 else "#FF0000"
+                    },
                   ]
                 },
                 {
@@ -113,6 +132,15 @@ def get_daily_data():
                     },
                     {
                       "type": "text",
+                      "text": str(res["NewRecovered"]),
+                      "margin": "none",
+                      "size": "xs",
+                      "align": "center",
+                      "weight": "regular",
+                      "color": "#009032" if res["NewRecovered"] >= 0 else "#FF0000"
+                    },
+                    {
+                      "type": "text",
                       "text": "กำลังรักษา",
                       "margin": "xl",
                       "size": "md",
@@ -127,7 +155,16 @@ def get_daily_data():
                       "size": "lg",
                       "align": "center",
                       "weight": "bold"
-                    }
+                    },
+                    {
+                      "type": "text",
+                      "text": str(res["NewHospitalized"]),
+                      "margin": "none",
+                      "size": "xs",
+                      "align": "center",
+                      "weight": "regular",
+                      "color": "#009032" if res["NewHospitalized"] >= 0 else "#FF0000"
+                    },
                   ]
                 }
               ]
