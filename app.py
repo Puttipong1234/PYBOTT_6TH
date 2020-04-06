@@ -14,7 +14,7 @@ from BasicFunction.COVID_ANALYZER import analyze_covid_from_user
 from firebase import firebase
 from BasicFunction.Firebase_Connect import get , get_daily_tracking , post, post_daily_tracking , update_daily_tracking , update , delete
 from BasicFunction.DailyApi import get_daily_data
-from BasicFunction.CaseLocationApi import get_case_location_data , get_location_reccommend_data
+from BasicFunction.CaseLocationApi import get_location_reccommend_data
 from config import Firebase_DB_url
 import random
 import time
